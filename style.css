@@ -1,0 +1,115 @@
+body {
+    min-height: 100vh;
+    background: url('https://static.vecteezy.com/system/resources/previews/001/335/135/non_2x/abstract-dynamic-blue-background-free-vector.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+header {
+    text-align: center;
+    padding: 20px 0;
+    background: rgba(0, 123, 255, 0.85);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+main {
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+#sessionMessage {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 24px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+form label {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+form input,
+form textarea,
+form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+form button {
+    padding: 10px 0;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+#registerForm {
+    background: #e8f5e9;
+    border: 2px solid #28a745;
+    box-shadow: 0 4px 16px rgba(40,167,69,0.12);
+    padding: 28px;
+    border-radius: 10px;
+}
+
+#registerForm label {
+    color: #218838;
+}
+
+#registerForm input {
+    border: 1px solid #28a745;
+}
+
+#showRegisterBtn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 0;
+    width: 25%;
+    background: #ffc107;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#showRegisterBtn:hover {
+    background: #ff9800;
+    color: #fff;
+}
+
+footer {
+  
+    margin-top: 32px;
+    background: rgba(0, 123, 255, 0.85);
+    color:#f9f9f9;
+    text-align: center;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+}
