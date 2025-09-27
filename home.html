@@ -1,21 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de sesión facebook</title>
-    <script src="script.js" defer></script>
+    <title>Inicio de sesión Facebook</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1 style="text-align:center;">F A C E B O O K</h1>
+    <header class="header-home">
+        <div class="header-left">
+            <input type="text" placeholder="Buscar..." class="search-bar">
+        </div>
+        <div class="header-right">
+            <div class="profile">
+                <img src="https://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/1255/2020/05/18091119/avatar.jpg" alt="Foto perfil" class="profile-pic">
+                <span class="profile-name">Usuario Ejemplo</span>
+            </div>
+            <button class="msg-btn">Mensajes</button>
+        </div>
     </header>
-    <main>
-        <h2 style="text-align:center;">¡Has iniciado sesión con éxito!</h2>
-        <p style="text-align:center;">Bienvenido a tu página de inicio.</p>
-    </main>
+    <div class="container-home">
+        <aside class="sidebar">
+            <div class="sidebar-profile">
+                <img src="https://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/1255/2020/05/18091119/avatar.jpg" alt="Foto perfil" class="sidebar-pic">
+                <span class="sidebar-name">Usuario Ejemplo</span>
+            </div>
+            <nav class="sidebar-nav">
+                <button>Editar perfil</button>
+                <button>Mis publicaciones</button>
+                <button>Feeds favoritos</button>
+                <button>Mensajes</button>
+                <button>Calendario de eventos</button>
+                <button>Fotos</button>
+            </nav>
+        </aside>
+        <main class="main-feed">
+            <section class="new-post">
+                <h3>Crear publicación</h3>
+                <form id="postForm">
+                    <textarea placeholder="¿Qué estás pensando?" rows="3"></textarea>
+                    <input type="file" accept="image/*">
+                    <button type="submit">Publicar</button>
+                </form>
+            </section>
+            <section class="feed">
+                <article class="post">
+                    <div class="post-header">
+                        <img src="https://www.informador.mx/__export/1591209620028/sites/elinformador/img/2020/06/03/whatsapp_image_2020-06-03_at_1_22_36_pm_x1x_crop1591209586178.jpg_423682103.jpg" alt="Foto" class="post-pic">
+                        <span class="post-author">Lesly Amaya</span>
+                    </div>
+                    <p>¡Hola a todos! Este atardecer de Puerto Barrios esta hermoso</p>
+                    <img src="https://pbs.twimg.com/media/Fto_wtYXgAIlELk.jpg" alt="Foto publicación" class="post-img">
+                    <div class="comments">
+                        <h4>Comentarios</h4>
+                        <div class="comment">Juan: ¡Bienvenida!</div>
+                        <form class="comment-form">
+                            <input type="text" placeholder="Agregar comentario...">
+                            <button type="submit">Comentar</button>
+                        </form>
+                    </div>
+                </article>
+                <!-- Puedes duplicar el bloque <article class="post"> para más publicaciones -->
+            </section>
+        </main>
+    </div>
     <footer>
         <center><p>&copy; 2025 Facebook. Todos los derechos reservados.</p></center>
     </footer>
+    <script>
+        // Mostrar el nombre del usuario en los apartados correspondientes
+        const nombreUsuario = localStorage.getItem('nombreUsuario') || 'Usuario Ejemplo';
+        document.querySelectorAll('.profile-name, .sidebar-name').forEach(el => {
+            el.textContent = nombreUsuario;
+        });
+    </script>
+</body>
 </html>

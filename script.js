@@ -30,9 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionMessage.textContent = `¡Has iniciado sesión como ${user.firstName} ${user.lastName}!`;
             sessionMessage.style.color = "green";
             messageDiv.textContent = "";
+            // Guardar nombre y apellido en localStorage
+            localStorage.setItem('nombreUsuario', user.firstName + ' ' + user.lastName);
             setTimeout(() => {
                 window.location.href = "home.html";
-            }, 1500); // Redirige después de 1.5 segundos
+            }, 1500);
         } else {
             messageDiv.textContent = "Correo/Teléfono o contraseña incorrectos.";
             messageDiv.style.color = "red";
