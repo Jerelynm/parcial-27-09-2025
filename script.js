@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const formTitle = document.getElementById('formTitle');
     const sessionMessage = document.getElementById('sessionMessage');
 
-    // Simulación de base de datos en memoria
     const users = [
         {
             firstName: "Jerelyn",
@@ -19,24 +18,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const identifier = loginForm.loginIdentifier.value;
-        const password = loginForm.loginPassword.value;
+        try {
+            const identifier = loginForm.loginIdentifier.value.trim();
+            const password = loginForm.loginPassword.value;
 
-        const user = users.find(u =>
-            (u.email === identifier || u.phone === identifier) && u.password === password
-        );
+            if (!identifier || !password) {
+                throw new Error("Todos los campos son obligatorios.");
+            }
 
-        if (user) {
-            sessionMessage.textContent = `¡Has iniciado sesión como ${user.firstName} ${user.lastName}!`;
-            sessionMessage.style.color = "green";
-            messageDiv.textContent = "";
-            // Guardar nombre y apellido en localStorage
-            localStorage.setItem('nombreUsuario', user.firstName + ' ' + user.lastName);
-            setTimeout(() => {
-                window.location.href = "home.html";
-            }, 1500);
-        } else {
-            messageDiv.textContent = "Correo/Teléfono o contraseña incorrectos.";
+            const user = users.find(u =>
+                (u.email === identifier || u.phone === identifier) && u.password === password
+            );
+
+            if (user) {
+                sessionMessage.textContent = `¡Has iniciado sesión como ${user.firstName} ${user.lastName}!`;
+                sessionMessage.style.color = "green";
+                messageDiv.textContent = "";
+                localStorage.setItem('nombreUsuario', user.firstName + ' ' + user.lastName);
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 1500);
+            } else {
+                throw new Error("Correo/Teléfono o contraseña incorrectos.");
+            }
+        } catch (error) {
+            messageDiv.textContent = error.message;
             messageDiv.style.color = "red";
             sessionMessage.textContent = "";
         }
@@ -53,39 +59,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     registerForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const firstName = registerForm.firstName.value.trim();
-        const lastName = registerForm.lastName.value.trim();
-        const newEmail = registerForm.newEmail.value.trim();
-        const phone = registerForm.phone.value.trim();
-        const newPassword = registerForm.newPassword.value;
-        const confirmPassword = registerForm.confirmPassword.value;
+        try {
+            const firstName = registerForm.firstName.value.trim();
+            const lastName = registerForm.lastName.value.trim();
+            const newEmail = registerForm.newEmail.value.trim();
+            const phone = registerForm.phone.value.trim();
+            const newPassword = registerForm.newPassword.value;
+            const confirmPassword = registerForm.confirmPassword.value;
 
-        if (users.find(u => u.email === newEmail || u.phone === phone)) {
-            messageDiv.textContent = "El correo o teléfono ya está registrado.";
+            if (!firstName || !lastName || !newEmail || !phone || !newPassword || !confirmPassword) {
+                throw new Error("Todos los campos son obligatorios.");
+            }
+
+            if (users.find(u => u.email === newEmail || u.phone === phone)) {
+                throw new Error("El correo o teléfono ya está registrado.");
+            }
+
+            if (newPassword !== confirmPassword) {
+                throw new Error("Las contraseñas no coinciden.");
+            }
+
+            users.push({
+                firstName,
+                lastName,
+                email: newEmail,
+                phone,
+                password: newPassword
+            });
+
+            messageDiv.textContent = "¡Cuenta creada exitosamente! Ahora puedes iniciar sesión.";
+            messageDiv.style.color = "green";
+            registerForm.style.display = "none";
+            loginForm.style.display = "block";
+            showRegisterBtn.style.display = "inline-block";
+            formTitle.textContent = "Formulario de Inicio de Sesión";
+            registerForm.reset();
+        } catch (error) {
+            messageDiv.textContent = error.message;
             messageDiv.style.color = "red";
-            return;
         }
-
-        if (newPassword !== confirmPassword) {
-            messageDiv.textContent = "Las contraseñas no coinciden.";
-            messageDiv.style.color = "red";
-            return;
-        }
-
-        users.push({
-            firstName,
-            lastName,
-            email: newEmail,
-            phone,
-            password: newPassword
-        });
-
-        messageDiv.textContent = "¡Cuenta creada exitosamente! Ahora puedes iniciar sesión.";
-        messageDiv.style.color = "green";
-        registerForm.style.display = "none";
-        loginForm.style.display = "block";
-        showRegisterBtn.style.display = "inline-block";
-        formTitle.textContent = "Formulario de Inicio de Sesión";
-        registerForm.reset();
     });
 });
