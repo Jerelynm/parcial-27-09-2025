@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Simulación de base de datos en memoria
     const users = [
         {
-            firstName: "Usuario",
-            lastName: "Ejemplo",
-            email: "usuario@facebook.com",
-            phone: "1234567890",
+            firstName: "Jerelyn",
+            lastName: "Marín",
+            email: "jerelyn245@gmail.com",
+            phone: "37661056",
             password: "123456"
         }
     ];
@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionMessage.textContent = `¡Has iniciado sesión como ${user.firstName} ${user.lastName}!`;
             sessionMessage.style.color = "green";
             messageDiv.textContent = "";
+            setTimeout(() => {
+                window.location.href = "home.html";
+            }, 1500); // Redirige después de 1.5 segundos
         } else {
             messageDiv.textContent = "Correo/Teléfono o contraseña incorrectos.";
             messageDiv.style.color = "red";

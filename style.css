@@ -76,12 +76,21 @@ form button:hover {
     border-radius: 10px;
 }
 
+#registerForm label,
+#registerForm input {
+    display: block;
+    width: 100%;
+}
+
 #registerForm label {
     color: #218838;
+    margin-bottom: 6px;
+    margin-top: 12px;
 }
 
 #registerForm input {
     border: 1px solid #28a745;
+    margin-bottom: 8px;
 }
 
 #showRegisterBtn {
